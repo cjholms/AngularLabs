@@ -9,8 +9,9 @@ import { Product } from '../shared/product';
   styleUrls: ['./ship-order.component.css']
 })
 export class ShipOrderComponent implements OnInit {
+  public order: Order;
 
-  constructor(private order: Order) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.order = new Order();
