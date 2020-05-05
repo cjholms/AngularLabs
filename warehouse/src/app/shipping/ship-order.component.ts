@@ -11,7 +11,7 @@ import { Product } from '../shared/product';
 export class ShipOrderComponent implements OnInit {
   public order: Order;
 
-  constructor() { }
+  constructor(private order: Order) { }
 
   ngOnInit(): void {
     this.order = new Order();
