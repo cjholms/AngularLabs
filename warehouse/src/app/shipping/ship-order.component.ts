@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Order } from '../shared/order';
 import { OrderLine } from '../shared/orderLine';
 import { Product } from '../shared/product';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'nw-ship-order',
@@ -11,11 +12,24 @@ import { Product } from '../shared/product';
 export class ShipOrderComponent implements OnInit {
   public order: Order;
 
-  constructor() { }
+  constructor(private _route: ActivatedRoute) { }
+
+  getBestLocation(orderLine) {
+    orderLine.locationID = "01A1A";
+    console.log(orderLine.locationID);
+  }
+
+  markAsShipped(order) {
+    order.status = 1;
+  }
+
+  markWithProblem(order) {
+    order.status = 2;
+  }
 
   ngOnInit(): void {
     this.order = new Order();
-    this.order.orderID = 1;
+    this.order.orderID = this._route.snapshot.params['orderID'];
     this.order.orderDate = new Date();
     this.order.shipVia = 1;
     this.order.shipping = 10;
@@ -28,7 +42,7 @@ export class ShipOrderComponent implements OnInit {
     this.order.status = 0;
     this.order.lines = [];
     const line1 = new OrderLine();
-    line1.locationID = "02B1C";
+    //line1.locationID = "02B1C";
     line1.price = 30.00;
     line1.productID = 55;
     line1.quantity = 2;
@@ -37,7 +51,7 @@ export class ShipOrderComponent implements OnInit {
     line1.product.name = "Oreos";
     line1.product.imageUrl = "/assets/images/productImages/34.jpg";
     const line2 = new OrderLine();
-    line2.locationID = "05A3A";
+    //line2.locationID = "05A3A";
     line2.price = 30.00;
     line2.productID = 45;
     line2.quantity = 7;
