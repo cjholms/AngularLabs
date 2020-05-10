@@ -3,10 +3,10 @@ import { Location } from './location';
 
 export class OrderLine {
     quantity: number;
-    productID: number;
+    productID: string;
     locationID: string;
-    price: number;
-    picked: boolean;
+    unitPrice: number;
+    picked: boolean = false;
     product: Product;
     location: Location;
 }

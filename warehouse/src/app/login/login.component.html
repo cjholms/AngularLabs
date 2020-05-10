@@ -1,0 +1,17 @@
+<label>Username:</label>
+<input />
+
+<label>Password: </label>
+<input />
+
+<button id="login" (click)="login()">Login</button>
+
+<div *ngIf="isLoggedIn; else fail">
+    <p>Logged in</p>
+</div>
+
+<ng-template #fail>
+    <div>
+        <p>Not logged in</p>
+    </div>
+</ng-template>

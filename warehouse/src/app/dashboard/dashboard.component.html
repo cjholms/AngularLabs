@@ -1,48 +1,18 @@
 <section class="panel panel-primary">
   <div class="panel-heading">
-    Orders ready to be picked:  <span class="badge">3</span>
+    Orders ready to be picked: <span class="badge">{{ orders.length }}</span>
   </div>
   <div class="panel-body">
-    <p class="alert alert-danger">
-      Our customers are our top priority! Please make sure these orders are picked, packed, and shipped as soon as possible.
+    <p *ngIf="orders.length; else allDone" class="alert alert-danger">
+      Our customers are our top priority! Please make sure these orders are picked, packed, and shipped as soon as
+      possible.
     </p>
-    <p class="alert alert-info">
-      All orders have been taken care of.
-    </p>
+    <ng-template #allDone>
+      <p class="alert alert-info">
+        All orders have been taken care of.
+      </p>
+    </ng-template>
   </div>
-  <div class="container">
-    <div class="header-row row" [ngStyle]="
-    {
-      'font-weight' : 'bold',
-      'font-size' : 'medium'
+  <nw-list-of-orders [orders]="orders"></nw-list-of-orders>
 
-    }">
-      <div class="col-xs-3">Order</div>
-      <div class="col-xs-4">Date</div>
-      <div class="col-xs-2">Products</div>
-      <div class="col-xs-3">Destination</div>
-    </div>
-
-    <div class="container order-row" *ngFor="let order of orders" [ngStyle]="{
-      'padding-top' : '5px',
-      'padding-bottom' : '5px'
-    }">
-      <div class="row row-1" [ngStyle]="{
-        'border-top' : 'thin solid',
-        'cursor' : 'pointer'
-      }">
-        <div class="col-xs-3" [routerLink]="['ship', order.orderID]">{{ order.orderID }}</div>
-        <div class="col-xs-4">{{ order.orderDate }}</div>
-        <div class="col-xs-2">{{ order.lines.length }}</div>
-        <div class="col-xs-3"></div>
-      </div>
-      <div class="row row-2" [style.cursor]="'pointer'">
-        <div class="col-xs-3"></div>
-        <div class="col-xs-4"></div>
-        <div class="col-xs-2"></div>
-        <div class="col-xs-3">{{ order.shipAddress }}, {{ order.shipCity }}, {{ order.shipRegion }}, {{ order.shipPostalCode }}</div>
-      </div>
-    </div>
-
-  </div> <!-- End of container div -->
 </section> <!-- End of panel -->

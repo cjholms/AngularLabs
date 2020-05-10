@@ -33,13 +33,13 @@
 <section id="orderInfo">
   <ul class="list-group">
     <li class="list-group-item">
-      Order number: {{ order.orderID }}
+      Order number: {{ order.id }}
     </li>
     <li class="list-group-item">
       Order date: {{ order.orderDate }}
     </li>
     <li class="list-group-item">
-      Ship via: {{ order.shipVia }}
+      Ship via: {{ order.shipVia | shipVia }}
     </li>
   </ul>
 </section>
@@ -56,19 +56,19 @@
     </thead>
     <tbody>
       <tr *ngFor="let line of order.lines">
-        <td><input class="big-checkbox" type="checkbox"></td>
-        <td><span *ngIf="line.locationID; else button">{{ line.locationID }}</span></td>
+        <td><input class="big-checkbox" type="checkbox" [(ngModel)]="line.picked"></td>
+        <td><span *ngIf="line.locationID; else button">{{ line.locationID | locationExpand }}</span></td>
         <ng-template #button>
           <button class="btn" (click)="getBestLocation(line)">Get best location</button>
         </ng-template>
         <td>{{ line.productID }}</td>
-        <td><img src="{{ line.product.imageUrl }}"></td>
+        <td><img src="{{ line.product?.imageUrl }}"></td>
         <td>{{ line.quantity }}</td>
     </tbody>
   </table>
 </section>
 <section id="markAsShipped">
-  <button class="btn btn-lg btn-primary" (click)="markAsShipped(order)">Mark as shipped</button>
+  <button class="btn btn-lg btn-primary" (click)="markAsShipped(order)" [disabled]="!isReadyToShip(order)">Mark as shipped</button>
   <button class="btn btn-lg btn-danger" (click)="markWithProblem(order)">Problem</button>
 </section>
 <section id="shippingLabel">

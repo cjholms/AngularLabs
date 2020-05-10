@@ -5,12 +5,14 @@ import { ReceiveProductComponent } from './receiving/receive-product.component';
 import { ShipOrderComponent } from './shipping/ship-order.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
 
 const routes = [
     {path: "ship", component: OrdersToShipComponent},
     {path: "receive", component: ReceiveProductComponent},
     {path: "ship/:orderID", component: ShipOrderComponent},
     {path: "inventory", component: InventoryComponent},
+    {path: "login", component: LoginComponent},
     {path: "", component: DashboardComponent}
 ];
 
