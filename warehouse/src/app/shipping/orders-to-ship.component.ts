@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrdersRepositoryService } from '../shared/orders-repository.service';
 
 @Component({
   selector: 'nw-orders-to-ship',
@@ -6,10 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./orders-to-ship.component.css']
 })
 export class OrdersToShipComponent implements OnInit {
-
-  constructor() { }
+  public orders: any;
+  constructor(private _ordersRepoService:OrdersRepositoryService) { }
 
   ngOnInit(): void {
+    this.getOrdersReadyToShip();
+  }
+
+  getOrdersReadyToShip() {
+    this._ordersRepoService.getOrdersReadyToShip()
+      .toPromise()
+      .then(
+        (success) => { 
+          console.log(success);
+          this.orders = success;
+         },
+        (error) => { console.error(error); }
+      );
   }
 
 }

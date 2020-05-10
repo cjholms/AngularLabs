@@ -1,8 +1,8 @@
 export class Product {
-    productID: number;
+    id: string;
     name: string;
     description: string;
     price: number;
-    imageUrl: string;
+    imageUrl: string = "";
     featured: boolean;
 }

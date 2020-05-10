@@ -2,7 +2,7 @@ import { Customer } from './customer';
 import { OrderLine } from './orderLine';
 
 export class Order {
-    orderID: number;
+    id: string;
     customerID: number;
     status: number;
     orderDate: Date;
@@ -15,6 +15,6 @@ export class Order {
     shipRegion: string;
     shipPostalCode: string;
     shipCountry: string;
-    lines: Array<OrderLine>;
+    lines: Array<OrderLine> = [];
     customer: Customer;
 }
